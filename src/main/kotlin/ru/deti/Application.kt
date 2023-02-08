@@ -24,28 +24,36 @@ fun main() {
         "postgres", "katanapas"
     )
 
-    embeddedServer(CIO, port = 8080, host = "0.0.0.0") {
-        installSerialization()
-
-        configureRegisterParentRouting()
-        configureLoginParentRouting()
-        configureAddChildrenRouting()
-
-        configureRegisterChildrenRouting()
-        configureLoginChildrenRouting()
-
-        configurePhotosRouting()
-
-        configureQRsRouting()
-
-        configureReadingRouting()
-
-        configureSubjectRouting()
-        configureNotificationsRouting()
-        configureRoadsRouting()
-    }.start(wait = true)
+    embeddedServer(CIO,
+        port = 8080,
+        host = "0.0.0.0",
+        module = Application::myApplicationModule
+    ).start(wait = true)
 }
 
 fun Application.module() {
     install(ContentNegotiation)
+}
+
+fun Application.myApplicationModule() {
+    installSerialization()
+
+    configureStartingRouting()
+
+    configureRegisterParentRouting()
+    configureLoginParentRouting()
+    configureAddChildrenRouting()
+
+    configureRegisterChildrenRouting()
+    configureLoginChildrenRouting()
+
+    configurePhotosRouting()
+
+    configureQRsRouting()
+
+    configureReadingRouting()
+
+    configureSubjectRouting()
+    configureNotificationsRouting()
+    configureRoadsRouting()
 }
