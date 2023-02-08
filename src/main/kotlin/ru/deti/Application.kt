@@ -26,7 +26,7 @@ fun main() {
 
     embeddedServer(CIO,
         port = 8080,
-        host = "0.0.0.0",
+        host = "deti-backend-server.onrender.com",
         module = Application::myApplicationModule
     ).start(wait = true)
 }
