@@ -18,20 +18,21 @@ import ru.deti.features.road.configureRoadsRouting
 import ru.deti.features.subject.configureSubjectRouting
 
 fun main() {
+    val PGUSER = "postgres"
+    val PGPASSWORD = "WDQY9pPa1ywBGt7mP867"
+    val PGHOST = "containers-us-west-164.railway.app"
+    val PGPORT = "5622"
+    val PGDATABASE = "railway"
 
     Database.connect(
-        "jdbc:postgresql://localhost:5432/deti", driver = "org.postgresql.Driver",
-        "postgres", "katanapas"
+        "jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}", driver = "org.postgresql.Driver",
+        "${PGUSER}", "${PGPASSWORD}"
     )
 
     embeddedServer(CIO,
         port = 8080,
         module = Application::myApplicationModule
     ).start(wait = true)
-}
-
-fun Application.module() {
-    install(ContentNegotiation)
 }
 
 fun Application.myApplicationModule() {
