@@ -18,11 +18,20 @@ import ru.deti.features.road.configureRoadsRouting
 import ru.deti.features.subject.configureSubjectRouting
 
 fun main() {
-    val PGUSER = "postgres"
-    val PGPASSWORD = "WDQY9pPa1ywBGt7mP867"
-    val PGHOST = "containers-us-west-164.railway.app"
-    val PGPORT = "5622"
-    val PGDATABASE = "railway"
+    
+    //ElephantSQL database
+    val PGUSER = "utmhmtix"
+    val PGPASSWORD = "1-IOzG9XYIQEWGzHf427Lpfez6Kbtsag"
+    val PGHOST = "trumpet.db.elephantsql.com"
+    val PGPORT = "5432"
+    val PGDATABASE = "utmhmtix"
+    
+    //Railway database
+    //val PGUSER = "postgres"
+    //val PGPASSWORD = "WDQY9pPa1ywBGt7mP867"
+    //val PGHOST = "containers-us-west-164.railway.app"
+    //val PGPORT = "5622"
+    //val PGDATABASE = "railway"
 
     Database.connect(
         "jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}", driver = "org.postgresql.Driver",
