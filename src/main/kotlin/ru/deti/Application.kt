@@ -3,7 +3,6 @@ package ru.deti
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.cio.*
-import io.ktor.server.plugins.contentnegotiation.*
 import org.jetbrains.exposed.sql.Database
 import ru.deti.features.addChildren.configureAddChildrenRouting
 import ru.deti.features.children.login_children.configureLoginChildrenRouting
@@ -18,15 +17,16 @@ import ru.deti.features.road.configureRoadsRouting
 import ru.deti.features.subject.configureSubjectRouting
 
 fun main() {
-    val PGUSER = "postgres"
-    val PGPASSWORD = "WDQY9pPa1ywBGt7mP867"
-    val PGHOST = "containers-us-west-164.railway.app"
-    val PGPORT = "5622"
-    val PGDATABASE = "railway"
+
+    val PGUSER = "utmhmtix"
+    val PGPASSWORD = "1-IOzG9XYIQEWGzHf427Lpfez6Kbtsag"
+    val PGHOST = "trumpet.db.elephantsql.com"
+    val PGPORT = "5432"
+    val PGDATABASE = "utmhmtix"
 
     Database.connect(
         "jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}", driver = "org.postgresql.Driver",
-        "${PGUSER}", "${PGPASSWORD}"
+        PGUSER, PGPASSWORD
     )
 
     embeddedServer(CIO,
