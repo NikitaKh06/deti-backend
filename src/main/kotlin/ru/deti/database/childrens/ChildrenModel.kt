@@ -57,4 +57,20 @@ object Childrens : Table() {
             }
         } catch (e: Exception) { null }
     }
+
+    fun fetchChildrenWithParentEmail(parentEmail: String) : childrenRegisterDTO? {
+        return try {
+            transaction {
+                val childrenModel = Childrens.select{ Childrens.parent_email.eq(parentEmail) }.single()
+                childrenRegisterDTO(
+                    id = childrenModel[Childrens.id],
+                    parent_email = childrenModel[Childrens.parent_email],
+                    password = childrenModel[Childrens.password],
+                    first_name = childrenModel[Childrens.first_name],
+                    last_name = childrenModel[Childrens.last_name],
+                    age = childrenModel[Childrens.age]
+                )
+            }
+        } catch (e: Exception) { null }
+    }
 }

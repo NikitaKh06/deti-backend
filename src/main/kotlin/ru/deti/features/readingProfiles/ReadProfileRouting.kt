@@ -20,6 +20,11 @@ fun Application.configureReadingRouting() {
             readingProfileController.readChildrenFromParent(call)
         }
 
+        post ("/read/children_by_parent_email") {
+            val readingProfileController = ReadingProfileController()
+            readingProfileController.searchChildrenByParentEmail(call)
+        }
+
         post ("/read/subjects_from_children") {
             val readingProfileController = ReadingProfileController()
             readingProfileController.readSubjectsFromChildren(call)

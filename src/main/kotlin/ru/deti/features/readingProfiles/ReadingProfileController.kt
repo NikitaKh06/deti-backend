@@ -100,6 +100,30 @@ class ReadingProfileController {
         }
     }
 
+    suspend fun searchChildrenByParentEmail(call: ApplicationCall) {
+        val receiveSearchChildrenByEmailModel = call.receive<ReceiveSearchChildrenByEmailModel>()
+        val parentId = Tokens.fetchUser(receiveSearchChildrenByEmailModel.token)
+
+        if (parentId == null) {
+            call.respond(HttpStatusCode.Conflict, "Parent doesnt exist")
+        }
+        else {
+            val childrenModel = Childrens.fetchChildrenWithParentEmail(receiveSearchChildrenByEmailModel.parent_email)
+            if(childrenModel != null) {
+                call.respond(
+                    ResponseSearchChildrenByEmailModel(
+                        first_name = childrenModel.first_name,
+                        last_name = childrenModel.last_name,
+                        age = childrenModel.age
+                    )
+                )
+            }
+            else {
+                call.respond(HttpStatusCode.Conflict, "Children doesnt exist")
+            }
+        }
+    }
+
     suspend fun readSubjectsFromChildren(call: ApplicationCall) {
         val receiveReadModel = call.receive<ReceiveReadArraySubjectModel>()
         val childrenId = Tokens.fetchUser(receiveReadModel.token)

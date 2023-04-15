@@ -34,6 +34,20 @@ data class ResponceModelReadChildrenFromParent(
     val photo: String
 )
 
+//Data model for search children by parent email
+@Serializable
+data class ReceiveSearchChildrenByEmailModel(
+    val token: String,
+    val parent_email: String
+)
+
+@Serializable
+data class ResponseSearchChildrenByEmailModel(
+    val first_name: String,
+    val last_name: String,
+    val age: String
+)
+
 //Data model for reading subject to array
 @Serializable
 data class ReceiveReadArraySubjectModel(
