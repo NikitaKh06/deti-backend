@@ -15,7 +15,7 @@ class AddChildrenController {
         val parentId = Tokens.fetchUser(receiveAddModel.token)
 
         if(parentId == null) {
-            call.respond(HttpStatusCode.Conflict, "Parent doesnt exist")
+            call.respond(HttpStatusCode.Conflict, "Parent doesnt exist", )
         }
         else {
             val parentModel = Parents.fetchParentWithId(parentId.user_id)
@@ -23,7 +23,7 @@ class AddChildrenController {
                 val childrenModel = Childrens.fetchChildren(parentModel.email)
                 if(childrenModel != null) {
                     Parents.addChildren(childrenId = childrenModel.id, parentId = parentModel.id)
-                    call.respond(HttpStatusCode.OK)
+                    call.respond(HttpStatusCode.OK, true)
                 }
             }
         }
