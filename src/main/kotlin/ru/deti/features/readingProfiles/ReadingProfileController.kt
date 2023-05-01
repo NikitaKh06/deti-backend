@@ -23,19 +23,15 @@ class ReadingProfileController {
         else {
             val childrenModel = Childrens.fetchChildrenWithId(childrenId.user_id)
             if(childrenModel != null) {
-                val photoModel = Photos.fetchPhoto(childrenId.user_id)
-                val qrModel = Qrs.fetchQR(childrenId.user_id)
-                if(photoModel != null && qrModel != null) {
-                    call.respond(
+                call.respond(
                         ResponceModelForChildrenProfile(
                             first_name = childrenModel.first_name,
                             last_name = childrenModel.last_name,
                             age = childrenModel.age,
-                            photo = photoModel.photo,
-                            qr_code =qrModel.qr_code
+                            photo = "",
+                            qr_code = ""
                         )
                     )
-                }
             }
             else {
                 call.respond(HttpStatusCode.Conflict, "Children doesnt exist")
