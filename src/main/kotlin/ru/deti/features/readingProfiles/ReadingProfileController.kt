@@ -49,12 +49,11 @@ class ReadingProfileController {
         else {
             val parentModel = Parents.fetchParentWithId(parentId.user_id)
             if(parentModel != null) {
-                val photoModel = Photos.fetchPhoto(parentId.user_id)
                 call.respond(
                     ResponceModelReadParent(
                         first_name = parentModel.first_name,
                         last_name = parentModel.last_name,
-                        photo = photoModel?.photo ?: "null"
+                        photo = ""
                     )
                 )
             }
